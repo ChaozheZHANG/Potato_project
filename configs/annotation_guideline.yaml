@@ -1,0 +1,179 @@
+# 数据标注指南配置
+# 用于哲豪进行数据标注工作
+
+annotation:
+  # 标注工具
+  tools:
+    - "LabelImg"     # 目标检测
+    - "Labelme"      # 实例分割（可选）
+  
+  # 缺陷类别定义
+  defect_classes:
+    black_spot:
+      name: "黑点"
+      description: "土豆表面的黑色斑点"
+      criteria:
+        - "直径 > 5mm"
+        - "颜色明显深于周围"
+        - "边界清晰"
+      examples: "黑色病斑、氧化点"
+      
+    pit:
+      name: "凹坑"
+      description: "土豆表面的凹陷"
+      criteria:
+        - "深度 > 2mm"
+        - "面积 > 100mm²"
+        - "影响外观"
+      examples: "机械损伤、虫蛀"
+      
+    residual_peel:
+      name: "残皮"
+      description: "未去除干净的土豆皮"
+      criteria:
+        - "面积 > 50mm²"
+        - "颜色明显不同"
+        - "厚度可见"
+      examples: "褐色残留皮、凹陷处残皮"
+      
+    green_spot:
+      name: "青斑"
+      description: "土豆表面的绿色区域"
+      criteria:
+        - "任何可见的绿色"
+        - "含龙葵碱，有毒"
+      examples: "见光变绿、芽眼周围绿色"
+      ng_direct: true  # 直接判为NG
+      
+    deformation:
+      name: "畸形"
+      description: "土豆形状严重不规则"
+      criteria:
+        - "长宽比 > 3:1 或 < 1:3"
+        - "有突出尖角"
+        - "整体形状不规则"
+      examples: "细长条、多分叉、严重弯曲"
+      ng_direct: true
+
+  # 分级标注
+  grading:
+    method: "weight_based"
+    levels:
+      1: 
+        weight_range: [500, 550]
+        color_tag: "red"
+      2:
+        weight_range: [450, 500]
+        color_tag: "orange"
+      3:
+        weight_range: [400, 450]
+        color_tag: "yellow"
+      4:
+        weight_range: [350, 400]
+        color_tag: "green"
+      5:
+        weight_range: [300, 350]
+        color_tag: "cyan"
+      6:
+        weight_range: [250, 300]
+        color_tag: "blue"
+      7:
+        weight_range: [150, 250]
+        color_tag: "purple"
+      9:  # NG品
+        weight_range: [0, 999]
+        color_tag: "black"
+    
+  # 标注流程
+  workflow:
+    step1:
+      name: "图像筛选"
+      description: "从采集的图像中筛选清晰、代表性的样本"
+      target: "每类至少100张"
+      
+    step2:
+      name: "缺陷标注"
+      description: "使用LabelImg标注所有可见缺陷"
+      format: "YOLO或VOC格式"
+      quality_check: "至少2人交叉验证"
+      
+    step3:
+      name: "分级标记"
+      description: "根据实际称重结果标记等级"
+      reference: "Excel表格中的重量数据"
+      
+    step4:
+      name: "边界案例"
+      description: "重点标注临界样本"
+      examples:
+        - "重量在两级边界的土豆（如249g、251g）"
+        - "轻微缺陷（如小黑点、浅凹坑）"
+        - "分级争议样本"
+      
+    step5:
+      name: "质量检查"
+      description: "标注完成后的质量控制"
+      checklist:
+        - "标注框是否完整覆盖缺陷"
+        - "类别是否正确"
+        - "等级是否与重量匹配"
+        - "是否有遗漏的缺陷"
+
+  # 数据集划分
+  dataset_split:
+    train: 0.7      # 70% 训练集
+    val: 0.2        # 20% 验证集
+    test: 0.1       # 10% 测试集
+    stratified: true  # 分层采样（保证各类别比例）
+
+  # 标注质量标准
+  quality_standards:
+    iou_threshold: 0.8        # 标注框IoU阈值
+    min_box_size: 20          # 最小标注框尺寸（像素）
+    max_boxes_per_image: 50   # 每张图最多标注数
+    consistency_check: true   # 一致性检查
+
+  # 已完成统计（Week 1目标）
+  progress:
+    week1_target: 200
+    week2_target: 500
+    week3_target: 1000
+    final_target: 2000
+
+# 分级标准对比分析（Week 1紧急任务）
+grading_comparison:
+  plan_a:
+    name: "Excel方案"
+    method: "重量+尺寸双标准"
+    data_source: "实测数据表"
+    issues:
+      - "尺寸测量人工成本高"
+      - "重量与尺寸可能不完全对应"
+    
+  plan_b:
+    name: "第一批方案"
+    method: "体积估算"
+    data_source: "视觉估算"
+    issues:
+      - "同一级内重量跨度大"
+      - "与客户期望不符"
+      - "需要重新校准"
+    
+  plan_c:
+    name: "第二批方案（推荐）"
+    method: "50g重量跨度"
+    data_source: "称重数据"
+    advantages:
+      - "重量标准清晰"
+      - "与市场标准接近"
+      - "视觉可区分性好"
+    potential_issues:
+      - "150-200/200-250可能视觉相似"
+      - "需要密度校准"
+
+  analysis_outputs:
+    - "级间重叠率统计表"
+    - "尺寸分布直方图"
+    - "实物照片对比"
+    - "客户沟通PPT"
+

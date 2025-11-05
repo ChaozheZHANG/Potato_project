@@ -1,0 +1,15 @@
+path: /tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)
+# 支持train/val/test三分集
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  - OK
+  - black_spots
+  - deformities
+  - greenish_spots
+  - pits
+  - red_spots
+  - scabs
+

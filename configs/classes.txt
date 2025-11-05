@@ -1,0 +1,5 @@
+black_spot
+pit
+residual_peel
+green_spot
+deformation

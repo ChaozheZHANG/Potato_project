@@ -1,0 +1,19 @@
+{
+  "suggested_thresholds_px": [
+    3696768,
+    3880830,
+    4112768,
+    4332498,
+    4597574,
+    5010185
+  ],
+  "statistics": {
+    "count": 12,
+    "min": 3584981.5,
+    "max": 6008752.5,
+    "mean": 4372691.541666667,
+    "median": 4210815.5,
+    "std": 701714.1826445869
+  },
+  "note": "请将 suggested_thresholds_px 复制到 grading_rules.json > size.thresholds_px"
+}

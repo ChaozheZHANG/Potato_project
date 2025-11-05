@@ -1,0 +1,203 @@
+# 土豆质检分级系统主配置文件
+# 项目目标: 150-550g土豆分7级，异常检测与NG处理
+# 更新时间: 2025-10-22
+
+system:
+  name: "PotatoInspectionSystem"
+  version: "1.0.0"
+  mode: "production"  # development/production
+  log_level: "INFO"  # DEBUG/INFO/WARNING/ERROR
+  
+# 生产线参数
+production:
+  target_frequency: 3  # Hz，目标节拍
+  max_frequency: 5  # Hz，最大节拍
+  conveyor_speed: 1.0  # m/s，传送带速度
+  detection_window: 500  # ms，检测时间窗口
+  max_concurrent_potatoes: 10  # 最大同时处理土豆数
+
+# 相机配置
+camera:
+  model: "industrial"  # industrial/usb
+  resolution:
+    width: 4096
+    height: 3000
+  # 视野参数
+  field_of_view:
+    glass_board:  # 玻璃板视野
+      width_cm: 38.7
+      height_cm: 28.35
+      resolution_um_px: 94.5
+    roller_top:  # 滚轴顶视野
+      width_cm: 56.5
+      height_cm: 41.4
+      resolution_um_px: 138
+  # 曝光参数
+  exposure:
+    default: 5000  # μs，默认曝光时间
+    min: 1000
+    max: 20000
+    auto_adjust: true
+  gain:
+    default: 0
+    min: 0
+    max: 20
+  # 触发模式
+  trigger:
+    mode: "software"  # software/hardware/encoder
+    delay_ms: 10  # 触发延迟（提前量）
+    timeout_ms: 1000
+  # 光源控制
+  light:
+    enable: true
+    trigger_advance_us: 100  # 光源提前触发时间（μs）
+    pulse_width_us: 6000  # 光源脉宽
+    intensity: 80  # 光源强度 0-100
+
+# 分级标准配置
+grading:
+  method: "weight_based"  # weight_based/volume_based
+  # 7个等级的重量范围（克）
+  levels:
+    1: [500, 550]
+    2: [450, 500]
+    3: [400, 450]
+    4: [350, 400]
+    5: [300, 350]
+    6: [250, 300]
+    7: [150, 250]
+  # NG品判定
+  ng_criteria:
+    min_weight: 150  # 最小重量（克）
+    max_weight: 550  # 最大重量（克）
+    # 缺陷阈值
+    max_black_spots: 3  # 最大黑点数
+    max_pit_area_ratio: 0.05  # 凹坑面积比
+    max_peel_area_ratio: 0.10  # 残皮面积比
+    has_green_spot: false  # 是否有青斑
+    deformation_threshold: 0.3  # 畸形阈值
+
+# 缺陷检测配置
+defect_detection:
+  # 检测类别
+  classes:
+    - "black_spot"  # 黑点
+    - "pit"  # 凹坑
+    - "residual_peel"  # 残皮
+    - "green_spot"  # 青斑
+    - "deformation"  # 畸形
+  # 检测阈值
+  confidence_threshold: 0.7
+  nms_threshold: 0.45
+  # 尺寸过滤
+  min_defect_area: 100  # 像素
+  max_defect_area: 100000
+
+# 模型配置
+model:
+  # 缺陷检测模型
+  defect_model:
+    type: "yolov8"  # yolov8/yolov9/faster-rcnn
+    path: "models/defect_detection.onnx"
+    input_size: [640, 640]
+    device: "cuda"  # cuda/cpu
+  # 分级模型
+  grading_model:
+    type: "classifier"
+    path: "models/grading_classifier.onnx"
+    input_size: [224, 224]
+    device: "cuda"
+  # 推理参数
+  inference:
+    batch_size: 1
+    num_threads: 4
+    use_tensorrt: false
+    use_fp16: false
+
+# 追踪配置
+tracking:
+  enable: true
+  algorithm: "sort"  # sort/deepsort/bytetrack
+  max_age: 30  # 最大失踪帧数
+  min_hits: 3  # 最小命中次数
+  iou_threshold: 0.3
+  # 位置预测
+  prediction:
+    enable: true
+    method: "kalman"  # kalman/linear
+    velocity_estimation: true
+
+# PLC通信配置
+plc:
+  enable: true
+  protocol: "modbus"  # modbus/s7/ethernet_ip
+  ip: "192.168.1.100"
+  port: 502
+  timeout: 1.0
+  # 输出通道映射
+  output_channels:
+    level_1: 0  # PLC地址
+    level_2: 1
+    level_3: 2
+    level_4: 3
+    level_5: 4
+    level_6: 5
+    level_7: 6
+    ng: 7  # NG通道
+  # 信号参数
+  signal:
+    pulse_width_ms: 100  # 脉冲宽度
+    sync_delay_ms: 50  # 同步延迟
+
+# 数据存储配置
+storage:
+  # 图像存证
+  save_images: true
+  save_ng_only: false  # 仅保存NG品
+  image_format: "jpg"
+  image_quality: 85
+  # 目录配置
+  paths:
+    raw_images: "captures/raw"
+    processed_images: "captures/processed"
+    logs: "logs"
+    models: "models"
+  # 存储策略
+  retention_days: 30
+  auto_cleanup: true
+  # 数据库
+  database:
+    enable: false
+    type: "sqlite"  # sqlite/mysql/postgresql
+    path: "data/inspection.db"
+
+# 监控与报警
+monitoring:
+  enable: true
+  # 健康检查
+  health_check:
+    interval_s: 10
+    timeout_s: 5
+  # 性能指标
+  metrics:
+    log_interval_s: 60
+    track_fps: true
+    track_latency: true
+    track_accuracy: true
+  # 报警阈值
+  alerts:
+    low_fps_threshold: 2  # Hz
+    high_latency_threshold: 500  # ms
+    camera_disconnected: true
+    plc_disconnected: true
+    disk_usage_threshold: 90  # %
+
+# 调试配置
+debug:
+  enable: false
+  visualize: true
+  save_debug_images: true
+  show_fps: true
+  show_tracking_id: true
+  show_detection_boxes: true
+

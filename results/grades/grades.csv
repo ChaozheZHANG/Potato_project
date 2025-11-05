@@ -1,0 +1,13 @@
+image,grade,signal_bits,counts_per_class_json
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/0fcb7e97-Pic_2025_10_21_154804_181.jpeg,NG,00000001,"{""scabs"": 3, ""red_spots"": 4, ""black_spots"": 2}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/11fe436c-Pic_2025_10_21_154309_43.jpeg,NG,00000001,"{""black_spots"": 3, ""deformities"": 1, ""red_spots"": 2, ""scabs"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/142d3876-Pic_2025_10_21_155115_246.jpeg,NG,00000001,"{""scabs"": 8, ""red_spots"": 6, ""black_spots"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/19eb9a59-Pic_2025_10_21_154326_60.jpeg,OK_S7,00000010,"{""black_spots"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/2677d01d-Pic_2025_10_21_154759_176.jpeg,NG,00000001,"{""OK"": 3, ""black_spots"": 5, ""scabs"": 3, ""red_spots"": 7, ""deformities"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/500dd282-Pic_2025_10_21_153841_12.jpeg,NG,00000001,"{""red_spots"": 6, ""black_spots"": 1, ""scabs"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/53d6081a-Pic_2025_10_21_154305_39.jpeg,NG,00000001,"{""red_spots"": 4, ""black_spots"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/56d8da53-Pic_2025_10_21_154350_84.jpeg,NG,00000001,"{""red_spots"": 1, ""pits"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/8c6292b1-Pic_2025_10_21_155124_255.jpeg,OK_S7,00000010,"{""black_spots"": 1, ""red_spots"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/97c16d39-Pic_2025_10_21_154340_74.jpeg,NG,00000001,"{""scabs"": 5, ""black_spots"": 7, ""red_spots"": 9}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/aa3fdf4c-Pic_2025_10_21_154623_151.jpeg,NG,00000001,"{""black_spots"": 5, ""scabs"": 6, ""red_spots"": 9, ""OK"": 1}"
+/tmp/potato_inspection_system/data/test/project-3-at-2025-10-30-19-49-55a1bb93(1)/images/test/e6963a94-Pic_2025_10_21_154310_44.jpeg,NG,00000001,"{""red_spots"": 3, ""deformities"": 1}"

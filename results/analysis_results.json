@@ -1,0 +1,185 @@
+{
+  "scheme_a": {
+    "classification_results": {
+      "NG": 49,
+      "Level 7": 40,
+      "Level 1": 23,
+      "Level 6": 13,
+      "Level 5": 12,
+      "Level 4": 11,
+      "Level 2": 5,
+      "Level 3": 3
+    },
+    "overlap_analysis": {
+      "Level 1_vs_Level 2": {
+        "overlap_rate": 7.142857142857142,
+        "overlap_count": 2,
+        "total_count": 28,
+        "boundary_range": 1073.3919981434076
+      },
+      "Level 2_vs_Level 3": {
+        "overlap_rate": 37.5,
+        "overlap_count": 3,
+        "total_count": 8,
+        "boundary_range": 453.1227547298743
+      },
+      "Level 3_vs_Level 4": {
+        "overlap_rate": 35.714285714285715,
+        "overlap_count": 5,
+        "total_count": 14,
+        "boundary_range": 396.5210179811853
+      },
+      "Level 4_vs_Level 5": {
+        "overlap_rate": 26.08695652173913,
+        "overlap_count": 6,
+        "total_count": 23,
+        "boundary_range": 350.0819693469674
+      },
+      "Level 5_vs_Level 6": {
+        "overlap_rate": 32.0,
+        "overlap_count": 8,
+        "total_count": 25,
+        "boundary_range": 295.27088139072316
+      },
+      "Level 6_vs_Level 7": {
+        "overlap_rate": 26.41509433962264,
+        "overlap_count": 14,
+        "total_count": 53,
+        "boundary_range": 221.2963004856097
+      },
+      "Level 7_vs_NG": {
+        "overlap_rate": 1.1235955056179776,
+        "overlap_count": 1,
+        "total_count": 89,
+        "boundary_range": 131.61653582977314
+      }
+    },
+    "accuracy_metrics": {
+      "accuracy": 1.0,
+      "correct_predictions": "156",
+      "total_predictions": 156
+    }
+  },
+  "scheme_b": {
+    "classification_results": {
+      "NG": 55,
+      "Level 1": 23,
+      "Level 7": 21,
+      "Level 6": 20,
+      "Level 5": 15,
+      "Level 4": 10,
+      "Level 3": 6,
+      "Level 2": 6
+    },
+    "overlap_analysis": {
+      "Level 1_vs_Level 2": {
+        "overlap_rate": 10.344827586206897,
+        "overlap_count": 3,
+        "total_count": 29,
+        "boundary_range": 1068.292063139757
+      },
+      "Level 2_vs_Level 3": {
+        "overlap_rate": 41.66666666666667,
+        "overlap_count": 5,
+        "total_count": 12,
+        "boundary_range": 435.5664484184382
+      },
+      "Level 3_vs_Level 4": {
+        "overlap_rate": 50.0,
+        "overlap_count": 8,
+        "total_count": 16,
+        "boundary_range": 378.31950194169883
+      },
+      "Level 4_vs_Level 5": {
+        "overlap_rate": 36.0,
+        "overlap_count": 9,
+        "total_count": 25,
+        "boundary_range": 330.0389867946046
+      },
+      "Level 5_vs_Level 6": {
+        "overlap_rate": 17.142857142857142,
+        "overlap_count": 6,
+        "total_count": 35,
+        "boundary_range": 270.29632521606635
+      },
+      "Level 6_vs_Level 7": {
+        "overlap_rate": 29.268292682926827,
+        "overlap_count": 12,
+        "total_count": 41,
+        "boundary_range": 220.35421860302515
+      },
+      "Level 7_vs_NG": {
+        "overlap_rate": 5.263157894736842,
+        "overlap_count": 4,
+        "total_count": 76,
+        "boundary_range": 118.82652859180565
+      }
+    },
+    "accuracy_metrics": {
+      "accuracy": 0.7884615384615384,
+      "correct_predictions": "123",
+      "total_predictions": 156
+    }
+  },
+  "scheme_c": {
+    "classification_results": {
+      "NG": 49,
+      "Level 7": 40,
+      "Level 1": 23,
+      "Level 6": 13,
+      "Level 5": 12,
+      "Level 4": 11,
+      "Level 2": 5,
+      "Level 3": 3
+    },
+    "overlap_analysis": {
+      "Level 1_vs_Level 2": {
+        "overlap_rate": 7.142857142857142,
+        "overlap_count": 2,
+        "total_count": 28,
+        "boundary_range": 1073.3919981434076
+      },
+      "Level 2_vs_Level 3": {
+        "overlap_rate": 37.5,
+        "overlap_count": 3,
+        "total_count": 8,
+        "boundary_range": 453.1227547298743
+      },
+      "Level 3_vs_Level 4": {
+        "overlap_rate": 35.714285714285715,
+        "overlap_count": 5,
+        "total_count": 14,
+        "boundary_range": 396.5210179811853
+      },
+      "Level 4_vs_Level 5": {
+        "overlap_rate": 26.08695652173913,
+        "overlap_count": 6,
+        "total_count": 23,
+        "boundary_range": 350.0819693469674
+      },
+      "Level 5_vs_Level 6": {
+        "overlap_rate": 32.0,
+        "overlap_count": 8,
+        "total_count": 25,
+        "boundary_range": 295.27088139072316
+      },
+      "Level 6_vs_Level 7": {
+        "overlap_rate": 26.41509433962264,
+        "overlap_count": 14,
+        "total_count": 53,
+        "boundary_range": 221.2963004856097
+      },
+      "Level 7_vs_NG": {
+        "overlap_rate": 1.1235955056179776,
+        "overlap_count": 1,
+        "total_count": 89,
+        "boundary_range": 131.61653582977314
+      }
+    },
+    "accuracy_metrics": {
+      "accuracy": 1.0,
+      "correct_predictions": "156",
+      "total_predictions": 156
+    }
+  }
+}

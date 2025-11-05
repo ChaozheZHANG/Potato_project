@@ -1,0 +1,77 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# 日志文件
+logs/
+*.log
+
+# 数据文件
+captures/
+data/train/
+data/val/
+data/test/
+data/annotations/
+
+# 模型文件
+models/*.onnx
+models/*.pt
+models/*.pth
+models/*.h5
+
+# 配置文件（敏感信息）
+configs/production_config.yaml
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.bak
+*.backup
+
+# 数据库
+*.db
+*.sqlite
+
+# 测试覆盖率
+.coverage
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# 其他
+.pytest_cache/
+.mypy_cache/
+
