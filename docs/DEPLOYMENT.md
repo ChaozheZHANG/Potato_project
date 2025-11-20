@@ -533,9 +533,5 @@ sudo ufw allow from 192.168.1.0/24  # PLC网段
 - [ ] 备份机制就位
 - [ ] 文档齐全
 
-## 联系支持
 
-如遇到部署问题，请联系：
-- 技术支持: Seven / 哲豪
-- 邮箱: support@example.com
 

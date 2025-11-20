@@ -399,5 +399,3 @@ python3 scripts/grade_potato_realtime.py \
 
 ---
 
-**文档结束**
-

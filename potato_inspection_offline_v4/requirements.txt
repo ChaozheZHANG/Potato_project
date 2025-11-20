@@ -1,0 +1,8 @@
+# Core dependencies for potato inspection system
+ultralytics==8.3.222
+opencv-python==4.10.0.84
+numpy>=1.24.0
+Pillow>=10.0.0
+
+# Optional: for PLC communication (if needed)
+# pymodbus>=3.0.0

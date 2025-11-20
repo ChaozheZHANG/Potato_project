@@ -1,0 +1,40 @@
+{
+  "camera": {
+    "base_directory": "F:/data/camera",
+    "pattern": "YYYYMMDD/ch{CC}_{HHMMSS}-{NNN}.jpg",
+    "scan_interval_seconds": 0.5
+  },
+  "model": {
+    "path": "models/yolov8s-obb-potato-v22_best.pt",
+    "confidence_threshold": 0.25
+  },
+  "plc": {
+    "enable": false,
+    "protocol": "modbus",
+    "host": "192.168.1.100",
+    "port": 502,
+    "address": 0,
+    "unit_id": 1,
+    "timeout": 1.0
+  },
+  "output": {
+    "directory": "results/realtime_monitor",
+    "save_images": false,
+    "save_visualizations": false
+  },
+  "channels": {
+    "ch01": {
+      "name": "Channel 1",
+      "enabled": true
+    },
+    "ch02": {
+      "name": "Channel 2",
+      "enabled": true
+    }
+  },
+  "logging": {
+    "level": "INFO",
+    "file": "logs/realtime_monitor.log"
+  }
+}
+
